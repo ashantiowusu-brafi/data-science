@@ -1,0 +1,43 @@
+#import panda library for loading dataset 
+import pandas as pd
+
+#path of file to read
+file_path = '../folder/data.csv'
+project_data = pd.read_csv(file_path) 
+
+# print a list of columns in dataset to pick a few variables for modeling. find the name of the prediction target using intuition
+
+project_data.columns
+
+# dropna drops missing values (thinkiing of na as "not available")
+project_data = project_data.dropna(axis=0)
+
+#select the target variable and save as 'y'
+y = project_data.Column#
+
+# build a model with only a few features
+project_features = ['Column1', 'Column2', 'Column3', 'Column4']
+
+X = project_data[project_features]
+
+# Review data
+# print description or statistics from X
+print(X.describe())
+# print the top few lines
+print(X.head())
+
+# defining a decision tree model with scikit-learn and fitting it with the features and target variable
+from sklearn.tree import DecisionTreeRegressor
+# Define model. Specify a number for random_state to ensure same results each run
+project_model = DecisionTreeRegressor(random_state=1)
+# Fit model
+project_model.fit(X, y)
+
+
+#PREDICTIONS
+#you want to make predictions for new data coming in; "test data". But you can begin by making predictions for the first rows of training data
+#print the prediction for the first 5 rows
+print(X.head())
+#making predictions save as variable called predictions
+predictions = project_model.predict(X.head())
+print(predictions)
