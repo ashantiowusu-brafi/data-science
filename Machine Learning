@@ -41,3 +41,9 @@ print(X.head())
 #making predictions save as variable called predictions
 predictions = project_model.predict(X.head())
 print(predictions)
+
+#calculate mean absolute error MAE
+from sklearn.metrics import mean_absolute_error
+
+predicted_y = project_model.predict(X)
+mean_absolute_error(y, predicted_y)
